@@ -21,7 +21,7 @@ public class ClaseDOMALMG {
     private Document Doc;
     private File Archivo;
     private String Directorio;
-    private boolean ValidacionDOcumento;
+    private boolean ValidacionDocumento;
     private boolean ExistenciaDocumento;
     private boolean AbiertoCerradoXML;
     private String ContenidoXML;
@@ -31,7 +31,7 @@ public class ClaseDOMALMG {
     public ClaseDOMALMG(String Directorio) {
         this.Directorio = Directorio;
         this.ExistenciaDocumento = Existir();
-        this.ValidacionDOcumento = Validar();
+        this.ValidacionDocumento = Validar();
     }
 
     public boolean Validar() {
@@ -40,11 +40,11 @@ public class ClaseDOMALMG {
         //Regresa true si la contiene, si no; false.
         if (this.ExistenciaDocumento == true) {
             if (Directorio.matches(".*.xml$")) {
-                this.ValidacionDOcumento = true;
+                this.ValidacionDocumento = true;
                 System.out.println("El XML si existe");
                 return true;
             } else {
-                this.ValidacionDOcumento = false;
+                this.ValidacionDocumento = false;
                 return false;
             }
         } else {
@@ -69,7 +69,7 @@ public class ClaseDOMALMG {
     }
 
     public Document AbrirXMLDOM() {
-        if (this.ExistenciaDocumento == true && this.ValidacionDOcumento == true) {
+        if (this.ExistenciaDocumento == true && this.ValidacionDocumento == true) {
             try {
                 //Se crea un objeto DocumentBuiderFactory
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -167,7 +167,7 @@ public class ClaseDOMALMG {
         }
     }
 
-    public boolean AñadirNodo(String Titulo, String Autor, String anno) {
+    public boolean AñadirNodo(String Titulo, String Autor, String Anno) {
 
         if (this.AbiertoCerradoXML == true) {//Comprobamos que el XML está 
                                              //abierto
@@ -191,7 +191,7 @@ public class ClaseDOMALMG {
                 //Se crea un nodo tipo Element y nombre "Autor"
                 Node nlibro = this.Doc.createElement("Libro");
                 //Se le añade un atributo al libro con el año de publicacion
-                ((Element) nlibro).setAttribute("Publicado_en", anno);
+                ((Element) nlibro).setAttribute("Publicado_en", Anno);
                 //Se le añade al nodo Libro los hijos Titulo y Autor
                 nlibro.appendChild(ntitulo);
                 nlibro.appendChild(nautor);
@@ -213,7 +213,7 @@ public class ClaseDOMALMG {
         }
     }
 
-    public boolean guardarDOMcomoFILE() {
+    public Document GuardarXML() {
         try {
             //Crea un fichero llamado donde se guardara el xml con sus 
             //modificaciones, en este caso sera el mismo XML que abrimos al
@@ -227,9 +227,73 @@ public class ClaseDOMALMG {
             XMLSerializer serializer = new XMLSerializer(new FileOutputStream(archivo_XML), format);
             serializer.serialize(this.Doc);
             
-            return true;
+            return this.Doc;
         } catch (Exception e) {
-            return false;
+            return null;
         }
     }
+
+    public Document getDoc() {
+        return Doc;
+    }
+
+    public void setDoc(Document Doc) {
+        this.Doc = Doc;
+    }
+
+    public File getArchivo() {
+        return Archivo;
+    }
+
+    public void setArchivo(File Archivo) {
+        this.Archivo = Archivo;
+    }
+
+    public String getDirectorio() {
+        return Directorio;
+    }
+
+    public void setDirectorio(String Directorio) {
+        this.Directorio = Directorio;
+    }
+
+    public boolean isValidacionDocumento() {
+        return ValidacionDocumento;
+    }
+
+    public void setValidacionDocumento(boolean ValidacionDocumento) {
+        this.ValidacionDocumento = ValidacionDocumento;
+    }
+
+    public boolean isExistenciaDocumento() {
+        return ExistenciaDocumento;
+    }
+
+    public void setExistenciaDocumento(boolean ExistenciaDocumento) {
+        this.ExistenciaDocumento = ExistenciaDocumento;
+    }
+
+    public boolean isAbiertoCerradoXML() {
+        return AbiertoCerradoXML;
+    }
+
+    public void setAbiertoCerradoXML(boolean AbiertoCerradoXML) {
+        this.AbiertoCerradoXML = AbiertoCerradoXML;
+    }
+
+    public String getContenidoXML() {
+        return ContenidoXML;
+    }
+
+    public void setContenidoXML(String ContenidoXML) {
+        this.ContenidoXML = ContenidoXML;
+    }
+
+    public boolean isLeido() {
+        return Leido;
+    }
+
+    public void setLeido(boolean Leido) {
+        this.Leido = Leido;
+    }   
 }
