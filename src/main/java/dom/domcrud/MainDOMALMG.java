@@ -21,6 +21,6 @@ public class MainDOMALMG {
         //Añade un nuevo nodo al XML
         dom.AñadirNodo("Don Quijote de la Mancha","Miguel de Cervantes","1605");
         //Guarda el nuevo nodo en el XML
-        dom.guardarDOMcomoFILE();
+        dom.GuardarXML();
     }    
 }
