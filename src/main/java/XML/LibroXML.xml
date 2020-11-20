@@ -12,8 +12,4 @@
         <Titulo>El Nombre de la Rosa</Titulo>
         <Autor>Umberto Eco</Autor>
     </Libro>
-    <Libro Publicado_en="1605">
-        <Titulo>Don Quijote de la Mancha</Titulo>
-        <Autor>Miguel de Cervantes</Autor>
-    </Libro>
 </Libros>
